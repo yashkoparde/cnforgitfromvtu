@@ -1,40 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Git mere laude pe</title>
+<title>CN Lab</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
     background: radial-gradient(circle at top, #0f0f2d, #000);
     color: #0ff;
-    overflow-x: hidden;
 }
 
 h1 {
     text-align: center;
-    font-size: 3rem;
     margin-top: 40px;
-    color: #ffffff;
-    text-shadow: 0 0 8px rgba(0,255,255,0.6), 0 0 2px #000;
-    animation: glitch 1s infinite;
-}
-
-h2 {
-    text-align: center;
-    color: #aaa;
-    margin-bottom: 30px;
-}
-
-@keyframes glitch {
-    0% { text-shadow: 2px 2px red; }
-    25% { text-shadow: -2px -2px blue; }
-    50% { text-shadow: 2px -2px green; }
-    75% { text-shadow: -2px 2px purple; }
-    100% { text-shadow: 2px 2px red; }
 }
 
 .container {
@@ -43,30 +27,13 @@ h2 {
 }
 
 .card {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0,0,0,0.7);
     border: 1px solid cyan;
     border-radius: 15px;
     padding: 20px;
     margin: 20px 0;
     box-shadow: 0 0 15px cyan;
     position: relative;
-    overflow: hidden;
-}
-
-.card::before {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, cyan, transparent);
-    animation: scan 4s linear infinite;
-    opacity: 0.08; /* reduced so text is readable */
-    pointer-events: none;
-}
-
-@keyframes scan {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .code-box {
@@ -74,9 +41,9 @@ h2 {
     padding: 15px;
     border-radius: 10px;
     border: 1px dashed #0ff;
-    margin-top: 10px;
     font-family: monospace;
-    position: relative;
+    white-space: pre-wrap;
+    overflow-x: auto;
 }
 
 .copy-btn {
@@ -89,46 +56,19 @@ h2 {
     cursor: pointer;
     font-weight: bold;
 }
-
-.copy-btn:hover {
-    background: #00aaaa;
-}
-
-.footer {
-    text-align: center;
-    margin: 50px 0;
-    font-size: 1.2rem;
-    color: #f0f;
-    text-shadow: 0 0 10px magenta;
-}
-
-.symbol {
-    text-align: center;
-    font-size: 2rem;
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
-
 </style>
+
 </head>
+
 <body>
 
-<h1>Git mera laude pe</h1>
-<h2>Computer Networks</h2>
-
-<div class="symbol">🤡</div>
-
+<h1>Computer Networks Lab</h1>
 
 <div class="container">
 
 <div class="card">
-<h3>TW-8)</h3>
-<div class="code-box" id="code1">
+<h3>OSPF</h3>
+<pre class="code-box" id="code1"><code>
 Tw 8 
 Ospf 
 #before executing please run the following cmds on IDLE Shell
@@ -185,14 +125,13 @@ ospf.add_link("D", "F", 2)
 ospf.add_link("E", "F", 6)
 
 source_router = input("Enter the Source Node : ")
-print(ospf.shortest_path(source_router.upper()))
-</div>
+print(ospf.shortest_path(source_router.upper()))</code></pre>
 <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
 </div>
 
 <div class="card">
 <h3>DVR</h3>
-<div class="code-box" id="code2">
+<pre class="code-box" id="code2"><code>
 # DVR
 
 import sys
@@ -270,13 +209,13 @@ if __name__ == "__main__":
 
     for node in nodes:
         network.print_routing_table(node)
-</div>
+</code></pre>
 <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
 </div>
 
 <div class="card">
-<h3>Token Buckets</h3>
-<div class="code-box" id="code3">
+<h3>Token Bucket</h3>
+<pre class="code-box" id="code3"><code>
 # TOKEN BUCKET
 
 import time
@@ -311,14 +250,13 @@ if __name__ == "__main__":
         bucket.add_token()
         packet_size = eval(input(" Enter the Packet size : "))  # Example: 15 bytes packet size
         bucket.transmit(packet_size)
-</div>
+</code></pre>
 <button class="copy-btn" onclick="copyCode('code3')">Copy</button>
 </div>
 
 <div class="card">
 <h3>Leaky Bucket</h3>
-<div class="code-box" id="code3">
-#Leaky bucket 
+<pre class="code-box" id="code4"><code>#Leaky bucket 
 import time
 
 class LeakyBucket:
@@ -368,14 +306,13 @@ if __name__ == "__main__":
 
         bucket.status()
 
-        time.sleep(1)
-</div>
-<button class="copy-btn" onclick="copyCode('code3')">Copy</button>
+        time.sleep(1)</code></pre>
+<button class="copy-btn" onclick="copyCode('code4')">Copy</button>
 </div>
 
 <div class="card">
-<h3>UDP Client</h3>
-<div class="code-box" id="code3">
+<h3>UDP</h3>
+<pre class="code-box" id="code5"><code>
 # UDP Client
 import socket
 
@@ -416,14 +353,13 @@ while True:
     	# Close the socket (this will never be reached in this example)
        server_socket.close()
        break
+</code></pre>
+<button class="copy-btn" onclick="copyCode('code5')">Copy</button>
 </div>
-<button class="copy-btn" onclick="copyCode('code3')">Copy</button>
 
-</div>
 <div class="card">
-<h3>TCP Client</h3>
-<div class="code-box" id="code3">
-# TCP Client
+<h3>TCP</h3>
+<pre class="code-box" id="code6"><code># TCP Client
 
 import socket
 
@@ -477,14 +413,13 @@ while True:
     finally:
         # Clean up the connection
         client_socket.close()
-</div>
-<button class="copy-btn" onclick="copyCode('code3')">Copy</button>
+</code></pre>
+<button class="copy-btn" onclick="copyCode('code6')">Copy</button>
 </div>
 
-</div>
 <div class="card">
 <h3>RSA</h3>
-<div class="code-box" id="code3">
+<pre class="code-box" id="code7"><code>
 #rsa
 import random
 import math
@@ -565,21 +500,16 @@ if __name__ == "__main__":
 
     decrypted_message = decrypt(private_key, encrypted_message)
     print(" Decrypted message:", decrypted_message)
-</div>
-<button class="copy-btn" onclick="copyCode('code3')">Copy</button>
-</div>
-
+</code></pre>
+<button class="copy-btn" onclick="copyCode('code7')">Copy</button>
 </div>
 
-<div class="footer">
-Agli baar padhke ana, git ka naam vtu ke aage mat dubana
 </div>
 
 <script>
 function copyCode(id) {
-    const text = document.getElementById(id).innerText;
+    const text = document.getElementById(id).textContent;
     navigator.clipboard.writeText(text);
-    alert("copy kar liya bhai, ab padh bhi le");
 }
 </script>
 
