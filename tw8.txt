@@ -1,0 +1,57 @@
+Tw 8 
+Ospf 
+#before executing please run the following cmds on IDLE Shell
+#import sys
+#import os
+#os.system(f"{sys.executable} -m pip install tabulate")
+import heapq
+from tabulate import tabulate
+
+class OSPFRouter:
+    def __init__(self):
+        self.graph = {}
+
+    def add_link(self, u, v, cost):
+        if u not in self.graph:
+            self.graph[u] = []
+        if v not in self.graph:
+            self.graph[v] = []
+        self.graph[u].append((v, cost))
+        self.graph[v].append((u, cost))
+
+    def shortest_path(self, source):
+        queue = [(0, source, 0)]  # (cost, node, hops)
+        shortest_paths = {node: (float('inf'), 0) for node in self.graph}  # (cost, hops)
+        shortest_paths[source] = (0, 0)
+        table_data = []
+
+        while queue:
+            current_cost, current_node, hops = heapq.heappop(queue)
+
+            for neighbor, cost in self.graph[current_node]:
+                new_cost = current_cost + cost
+                new_hops = hops + 1
+
+                if new_cost < shortest_paths[neighbor][0]:
+                    shortest_paths[neighbor] = (new_cost, new_hops)
+                    heapq.heappush(queue, (new_cost, neighbor, new_hops))
+
+        for destination, (cost, hops) in shortest_paths.items():
+            table_data.append([source, hops, destination, cost])
+
+        return tabulate(table_data, headers=["Source", "Hops", "Destination", "Cost"], tablefmt="grid")
+
+# Example usage:
+ospf = OSPFRouter()
+ospf.add_link("A", "B", 4)
+ospf.add_link("A", "C", 5)
+ospf.add_link("B", "C", 11)
+ospf.add_link("B", "D", 9)
+ospf.add_link("B", "E", 7)
+ospf.add_link("C", "E", 3)
+ospf.add_link("D", "E", 13)
+ospf.add_link("D", "F", 2)
+ospf.add_link("E", "F", 6)
+
+source_router = input("Enter the Source Node : ")
+print(ospf.shortest_path(source_router.upper()))
