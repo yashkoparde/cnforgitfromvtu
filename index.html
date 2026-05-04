@@ -56,6 +56,19 @@ h1 {
     cursor: pointer;
     font-weight: bold;
 }
+
+.code-box {
+    background: #000;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px dashed #0ff;
+    margin-top: 10px;
+    font-family: monospace;
+    
+    white-space: pre;        /* preserves exact formatting */
+    overflow-x: auto;        /* horizontal scroll */
+    tab-size: 4;             /* proper indentation */
+}
 </style>
 
 </head>
@@ -256,7 +269,8 @@ if __name__ == "__main__":
 
 <div class="card">
 <h3>Leaky Bucket</h3>
-<pre class="code-box" id="code4"><code>#Leaky bucket 
+<pre class="code-box" id="code4"><code>
+#Leaky bucket 
 import time
 
 class LeakyBucket:
@@ -508,8 +522,13 @@ if __name__ == "__main__":
 
 <script>
 function copyCode(id) {
-    const text = document.getElementById(id).textContent;
-    navigator.clipboard.writeText(text);
+    const el = document.getElementById(id);
+
+    const text = el.textContent; // more accurate than innerText
+
+    navigator.clipboard.writeText(text).then(() => {
+        alert("copy kar liya bhai, ab padh bhi le");
+    });
 }
 </script>
 
