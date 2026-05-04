@@ -3,120 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VS Code Clone Ultra</title>
+<title>VS Code Full Clone</title>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 <style>
-body {
-  margin: 0;
-  background: #1e1e1e;
-  font-family: 'Fira Code', monospace;
-  color: #d4d4d4;
+body { margin:0; background:#1e1e1e; font-family:'Fira Code', monospace; color:#d4d4d4; }
+
+.vscode { display:flex; height:100vh; flex-direction:column; }
+
+/* TOP NAVBAR */
+.navbar {
+  height:30px;
+  background:#3c3c3c;
+  display:flex;
+  align-items:center;
+  padding:0 10px;
+  font-size:0.85rem;
 }
 
-.vscode {
-  display: flex;
-  height: 100vh;
-}
+.navbar span { margin-right:15px; cursor:pointer; }
+.navbar span:hover { background:#505050; }
 
+.main { display:flex; flex:1; }
+
+/* ACTIVITY BAR */
 .activitybar {
-  width: 50px;
-  background: #333333;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 10px;
+  width:50px;
+  background:#333;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:10px;
 }
 
-.activitybar div {
-  margin: 15px 0;
-  cursor: pointer;
-}
+.activitybar div { margin:12px 0; cursor:pointer; }
 
+/* SIDEBAR */
 .sidebar {
-  width: 220px;
-  background: #252526;
-  padding: 10px;
+  width:230px;
+  background:#252526;
+  padding:10px;
 }
 
-.sidebar-title {
-  font-size: 0.8rem;
-  color: #aaa;
-  margin-bottom: 10px;
-}
+.sidebar-title { font-size:0.75rem; color:#aaa; margin-bottom:10px; }
 
-.file {
-  padding: 6px;
-  cursor: pointer;
-}
+.file { padding:6px; cursor:pointer; border-radius:4px; }
+.file:hover { background:#37373d; }
+.file.active { background:#094771; }
 
-.file:hover {
-  background: #37373d;
-}
+/* EDITOR */
+.editor { flex:1; display:flex; flex-direction:column; }
 
-.file.active {
-  background: #094771;
-}
+.tabs { display:flex; background:#2d2d2d; }
+.tab { padding:8px 15px; border-right:1px solid #1e1e1e; }
+.tab.active { background:#1e1e1e; }
 
-.editor {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.tabs {
-  display: flex;
-  background: #2d2d2d;
-}
-
-.tab {
-  padding: 8px 15px;
-  border-right: 1px solid #1e1e1e;
-}
-
-.tab.active {
-  background: #1e1e1e;
-}
-
-.code-area {
-  display: flex;
-  flex: 1;
-}
+.code-area { display:flex; flex:1; }
 
 .lines {
-  width: 50px;
-  background: #1e1e1e;
-  color: #858585;
-  text-align: right;
-  padding: 10px 5px;
+  width:50px;
+  background:#1e1e1e;
+  color:#858585;
+  text-align:right;
+  padding:10px 5px;
 }
 
 .code {
-  flex: 1;
-  padding: 10px;
-  white-space: pre;
-  position: relative;
+  flex:1;
+  padding:10px;
+  white-space:pre;
+  position:relative;
+}
+
+/* TERMINAL */
+.terminal {
+  height:150px;
+  background:#1e1e1e;
+  border-top:1px solid #333;
+  padding:10px;
+  color:#0f0;
+  font-size:0.8rem;
+}
+
+/* STATUS BAR */
+.statusbar {
+  height:25px;
+  background:#007acc;
+  display:flex;
+  align-items:center;
+  padding:0 10px;
+  font-size:0.8rem;
+  color:white;
 }
 
 .cursor {
-  display: inline-block;
-  width: 8px;
-  background: white;
-  animation: blink 1s infinite;
+  display:inline-block;
+  width:8px;
+  background:white;
+  animation:blink 1s infinite;
 }
 
 @keyframes blink {
-  0%,50%,100% { opacity: 1; }
-  25%,75% { opacity: 0; }
-}
-
-.statusbar {
-  height: 25px;
-  background: #007acc;
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  font-size: 0.8rem;
+  0%,50%,100%{opacity:1;} 25%,75%{opacity:0;}
 }
 
 </style>
@@ -124,6 +111,19 @@ body {
 <body>
 
 <div class="vscode">
+
+<div class="navbar">
+  <span>File</span>
+  <span>Edit</span>
+  <span>Selection</span>
+  <span>View</span>
+  <span>Go</span>
+  <span>Run</span>
+  <span>Terminal</span>
+  <span>Help</span>
+</div>
+
+<div class="main">
 
 <div class="activitybar">
   <div>📁</div>
@@ -135,34 +135,44 @@ body {
 
 <div class="sidebar">
   <div class="sidebar-title">EXPLORER</div>
-  <div class="file active" onclick="openFile('tw1')">TW1</div>
-  <div class="file" onclick="openFile('tw2')">TW2</div>
-  <div class="file" onclick="openFile('tw3')">TW3</div>
-  <div class="file" onclick="openFile('tw4')">TW4</div>
-  <div class="file" onclick="openFile('tw5')">TW5</div>
-  <div class="file" onclick="openFile('tw6')">TW6</div>
-  <div class="file" onclick="openFile('tw7')">TW7</div>
-  <div class="file" onclick="openFile('tw8')">TW8</div>
+  <div class="file active" onclick="openFile('tw1', this)">TW1</div>
+  <div class="file" onclick="openFile('tw2', this)">TW2</div>
+  <div class="file" onclick="openFile('tw3', this)">TW3</div>
+  <div class="file" onclick="openFile('tw4', this)">TW4</div>
+  <div class="file" onclick="openFile('tw5', this)">TW5</div>
+  <div class="file" onclick="openFile('tw6', this)">TW6</div>
+  <div class="file" onclick="openFile('tw7', this)">TW7</div>
+  <div class="file" onclick="openFile('tw8', this)">TW8</div>
 </div>
 
 <div class="editor">
 
 <div class="tabs" id="tabs"></div>
+<button onclick="copyCurrent()" style="position:absolute; right:20px; top:40px; background:#007acc; color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer;">Copy</button>
 
 <div class="code-area">
   <div class="lines" id="lines"></div>
   <div class="code" id="code"></div>
 </div>
 
-<div class="statusbar">VS Code Clone | UTF-8 | JavaScript</div>
+<div class="terminal" id="terminal">
+> npm start
+> compiling...
+> no errors found (unlike your viva)
+</div>
+
+<div class="statusbar">main | UTF-8 | JavaScript | Ln 1, Col 1</div>
 
 </div>
+
+</div>
+
 </div>
 
 <script>
 const files = {
-  tw1: "// TW1\n// GIT lun pe mere",
-  tw2: "// TW2\n// #rsa
+  tw1:`// TW1\n// GIT mere lun pe`,
+  tw2:`// TW2\n//#rsa
 import random
 import math
 
@@ -241,8 +251,8 @@ if __name__ == "__main__":
     print(" Encrypted message:", encrypted_message)
 
     decrypted_message = decrypt(private_key, encrypted_message)
-    print(" Decrypted message:", decrypted_message)",
-  tw3: "// TW3\n// # TCP Client
+    print(" Decrypted message:", decrypted_message)`,
+  tw3:`// TW3\n//# TCP Client
 
 import socket
 
@@ -295,8 +305,8 @@ while True:
             break
     finally:
         # Clean up the connection
-        client_socket.close()",
-  tw4: "// TW4\n// # UDP Client
+        client_socket.close()`,
+  tw4:`// TW4\n//# UDP Client
 import socket
 
 # Create a UDP socket
@@ -335,8 +345,8 @@ while True:
     if data.decode()=='STOP':
     	# Close the socket (this will never be reached in this example)
        server_socket.close()
-       break",
-  tw5: "// TW5\n// #Leaky bucket 
+       break`,
+  tw5:`// TW5\n//#Leaky bucket 
 import time
 
 class LeakyBucket:
@@ -386,8 +396,8 @@ if __name__ == "__main__":
 
         bucket.status()
 
-        time.sleep(1)",
-  tw6: "// TW6\n// # TOKEN BUCKET
+        time.sleep(1)`,
+  tw6:`// TW6\n//# TOKEN BUCKET
 
 import time
 
@@ -420,9 +430,8 @@ if __name__ == "__main__":
         print(f"Time: {i} seconds")
         bucket.add_token()
         packet_size = eval(input(" Enter the Packet size : "))  # Example: 15 bytes packet size
-        bucket.transmit(packet_size)",
-  tw7: "// TW7\n// # DVR
-
+        bucket.transmit(packet_size)`,
+  tw7:`//#TW7\n//#DVR
 import sys
 
 class Network:
@@ -497,9 +506,8 @@ if __name__ == "__main__":
             network.update_distance_vector(node)
 
     for node in nodes:
-        network.print_routing_table(node)",
-  tw8: "// TW8\n// Tw 8 
-Ospf 
+        network.print_routing_table(node)`,
+  tw8:`// TW8\n//#Ospf 
 #before executing please run the following cmds on IDLE Shell
 #import sys
 #import os
@@ -554,27 +562,48 @@ ospf.add_link("D", "F", 2)
 ospf.add_link("E", "F", 6)
 
 source_router = input("Enter the Source Node : ")
-print(ospf.shortest_path(source_router.upper()))"
+print(ospf.shortest_path(source_router.upper()))`
 };
 
-function openFile(name) {
+function openFile(name, el){
   const content = files[name];
 
-  document.getElementById('code').innerHTML = content + '<span class="cursor"></span>';
+  // render code safely
+  document.getElementById('code').innerHTML =
+    content.replace(/</g,'&lt;').replace(/>/g,'&gt;') +
+    '<span class="cursor"></span>';
 
-  const lines = content.split('\n').length;
-  let lineStr = '';
-  for (let i = 1; i <= lines; i++) lineStr += i + '<br>';
-  document.getElementById('lines').innerHTML = lineStr;
+  // FIXED LINE COUNT (IMPORTANT)
+  const lines = content.split('\\n').length;
+  let str = '';
+  for(let i = 1; i <= lines; i++) {
+    str += i + '<br>';
+  }
+  document.getElementById('lines').innerHTML = str;
 
+  // active file highlight
   document.querySelectorAll('.file').forEach(f => f.classList.remove('active'));
-  event.target.classList.add('active');
+  if(el) el.classList.add('active');
 
-  const tabs = document.getElementById('tabs');
-  tabs.innerHTML = `<div class="tab active">${name.toUpperCase()}</div>`;
+  // tab update
+  document.getElementById('tabs').innerHTML =
+    `<div class="tab active">${name.toUpperCase()}</div>`;
 }
 
-openFile('tw1');
+// copy button
+function copyCurrent(){
+  const activeTab = document.querySelector('.tab.active');
+  if(!activeTab) return;
+
+  const name = activeTab.innerText.toLowerCase();
+  const raw = files[name];
+
+  navigator.clipboard.writeText(raw);
+  alert('cheater lawdya abhyas karun ye next time');
+}
+
+// default load
+openFile('tw1', document.querySelector('.file'));
 </script>
 
 </body>
