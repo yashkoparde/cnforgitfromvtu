@@ -1,0 +1,51 @@
+#Leaky bucket 
+import time
+
+class LeakyBucket:
+    def __init__(self, capacity, leak_rate):
+        self.capacity = capacity          # Maximum bucket size
+        self.leak_rate = leak_rate        # Packets that leak per second
+        self.bucket = 0                   # Current packets in bucket
+
+    # Add packets to bucket
+    def add_packet(self, packets):
+        space = self.capacity - self.bucket   # Available space in bucket
+
+        if packets <= space:
+            self.bucket += packets
+            print(f"{packets} packet(s) added to bucket")
+        else:
+            self.bucket += space
+            dropped = packets - space
+            print(f"{space} packet(s) added, {dropped} packet(s) dropped (overflow)")
+
+    # Leak packets from bucket
+    def leak(self):
+        leaked = min(self.bucket, self.leak_rate)
+        self.bucket -= leaked
+        print(f"{leaked} packet(s) transmitted")
+
+    # Show bucket status
+    def status(self):
+        print(f"Packets currently in bucket: {self.bucket}")
+
+
+# Main program
+if __name__ == "__main__":
+
+    capacity = int(input("Enter bucket capacity: "))
+    leak_rate = int(input("Enter leak rate (packets/sec): "))
+
+    bucket = LeakyBucket(capacity, leak_rate)
+
+    for i in range(5):
+        print(f"\nTime {i+1}")
+
+        packets = int(input("Enter number of incoming packets: "))
+        bucket.add_packet(packets)
+
+        bucket.leak()
+
+        bucket.status()
+
+        time.sleep(1)
