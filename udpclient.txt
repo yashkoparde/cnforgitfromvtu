@@ -1,0 +1,40 @@
+# UDP Client
+import socket
+
+# Create a UDP socket
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+# Server address and port
+server_address = ('localhost', 12345)
+
+while True:
+    message = input('Enter a message: ')
+
+    # Send data to the server
+    client_socket.sendto(message.encode(), server_address)
+    if message=='STOP':
+    	# Close the socket (this will never be reached in this example)
+       client_socket.close()
+       break
+
+
+#UDP Server
+import socket
+
+# Create a UDP socket
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+# Bind the socket to an address and port
+server_address = ('localhost', 12345)
+server_socket.bind(server_address)
+
+print('Connected & UDP server is waiting for messages...')
+
+while True:
+    # Receive data from the client
+    data, client_address = server_socket.recvfrom(1024)
+    print(f'Received message from {client_address}: {data.decode()}')
+    if data.decode()=='STOP':
+    	# Close the socket (this will never be reached in this example)
+       server_socket.close()
+       break
